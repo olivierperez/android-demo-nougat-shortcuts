@@ -19,6 +19,21 @@ public class MainActivity extends AppCompatActivity {
 
         // Report shortcut usage even if the user didn't use the shortcut
         reportShortcutUsage();
+
+        // Will restore shortcuts when app is backed up on new device
+        restoreWhenBackedUp();
+    }
+
+    private void restoreWhenBackedUp() {
+        ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+        if (shortcutManager.getDynamicShortcuts().size() == 0) {
+            // Application restored. Need to re-publish dynamic shortcuts.
+            if (shortcutManager.getPinnedShortcuts().size() > 0) {
+                // Pinned shortcuts have been restored. Use
+                // updateShortcuts(List) to make sure they
+                // contain up-to-date information.
+            }
+        }
     }
 
     private void reportShortcutUsage() {
