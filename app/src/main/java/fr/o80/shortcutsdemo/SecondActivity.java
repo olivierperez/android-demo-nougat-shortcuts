@@ -53,16 +53,24 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private List<ShortcutInfo> createShortcut() {
-        Intent intent = new Intent(this, SecondActivity.class);
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        // First intent
+        Intent mainIntent = new Intent(this, MainActivity.class);
+        mainIntent.setAction(Intent.ACTION_VIEW);
+
+        // Second intent, the visible one
+        mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent secondIntent = new Intent(this, SecondActivity.class);
+        secondIntent.setAction(Intent.ACTION_VIEW);
 
         ShortcutInfo shortcut = new ShortcutInfo.Builder(this, SHORTCUT_ID)
                 .setShortLabel(getString(R.string.shortcut_second_short))
                 .setLongLabel(getString(R.string.shortcut_second_long))
                 .setDisabledMessage(getString(R.string.shortcut_second_disabled))
                 .setIcon(Icon.createWithResource(this, R.drawable.ic_second))
-                .setIntent(intent)
+                .setIntents(new Intent[] {
+                        mainIntent, // First intent
+                        secondIntent // Second intent, the visible one
+                })
                 .build();
 
         return Collections.singletonList(shortcut);
