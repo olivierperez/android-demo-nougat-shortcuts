@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Soon outdated beers -->
+    <shortcut
+        android:shortcutId="home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:shortcutShortLabel="@string/shortcut_home_short"
+        android:shortcutLongLabel="@string/shortcut_home_long"
+        android:shortcutDisabledMessage="@string/shortcut_home_disabled">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="fr.o80.shortcutsdemo"
+            android:targetClass="fr.o80.shortcutsdemo.MainActivity" />
+    </shortcut>
+
+</shortcuts>
