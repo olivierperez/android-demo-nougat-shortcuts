@@ -1,9 +1,14 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="Typos">
     <string name="app_name">ShortcutsDemo</string>
     <string name="home">Home</string>
     <string name="second">Second</string>
+    <string name="do_it">Do it</string>
 
     <string name="shortcut_home_short">Go to home</string>
     <string name="shortcut_home_long">Very very long way to home</string>
     <string name="shortcut_home_disabled">Can\'t go home</string>
+
+    <string name="shortcut_second_short">Go further</string>
+    <string name="shortcut_second_long">Very very long way to far far away</string>
+    <string name="shortcut_second_disabled">Can\'t go further</string>
 </resources>
