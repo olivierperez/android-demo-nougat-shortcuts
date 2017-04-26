@@ -23,14 +23,26 @@ public class SecondActivity extends AppCompatActivity {
         findViewById(R.id.button).setOnClickListener(v -> {
             ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
             List<ShortcutInfo> dynamicShortcuts = shortcutManager.getDynamicShortcuts();
+            List<ShortcutInfo> pinnedShortcuts = shortcutManager.getPinnedShortcuts();
 
-            if (dynamicShortcuts.isEmpty()) {
+            if (dynamicShortcuts.isEmpty() && pinnedShortcuts.isEmpty()) {
                 shortcutManager.setDynamicShortcuts(createShortcut());
                 Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show();
 
-            } else {
+            } else if (pinnedShortcuts.isEmpty()) {
+                // Remove from list (but don't disable pinned shorcuts)
                 shortcutManager.removeDynamicShortcuts(Collections.singletonList(SHORTCUT_ID));
                 Toast.makeText(this, "Removed", Toast.LENGTH_SHORT).show();
+
+            } else if (pinnedShortcuts.get(0).isEnabled()) {
+                // Disable pinned shortcuts + remove from list
+                shortcutManager.disableShortcuts(Collections.singletonList(SHORTCUT_ID));
+                Toast.makeText(this, "Disabled", Toast.LENGTH_SHORT).show();
+
+            } else {
+                // Enable pinned
+                shortcutManager.enableShortcuts(Collections.singletonList(SHORTCUT_ID));
+                Toast.makeText(this, "Enabled", Toast.LENGTH_SHORT).show();
 
             }
         });
