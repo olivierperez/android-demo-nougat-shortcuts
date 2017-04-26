@@ -46,6 +46,10 @@ public class SecondActivity extends AppCompatActivity {
 
             }
         });
+
+        // Report shortcut usage even if the user didn't use the shortcut
+        ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+        shortcutManager.reportShortcutUsed(SHORTCUT_ID);
     }
 
     private List<ShortcutInfo> createShortcut() {

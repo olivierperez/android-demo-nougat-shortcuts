@@ -1,6 +1,7 @@
 package fr.o80.shortcutsdemo;
 
 import android.content.Intent;
+import android.content.pm.ShortcutManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,5 +16,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SecondActivity.class);
             startActivity(intent);
         });
+
+        // Report shortcut usage even if the user didn't use the shortcut
+        reportShortcutUsage();
+    }
+
+    private void reportShortcutUsage() {
+        ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+        shortcutManager.reportShortcutUsed("home");
     }
 }
